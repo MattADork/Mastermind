@@ -34,7 +34,6 @@ def main
   end
 
   $turn_number = 1
-  print $code_spaced
   matches($code_spaced, game)
   print_guess
   matches($code_spaced, game)
@@ -59,6 +58,14 @@ def main
   print_guess
   matches($code_spaced, game)
   print_guess
+  puts "Sorry... You've lost this time, do you want to play again? (y/n)"
+    prompt
+    play_one_more = gets.chomp.downcase
+    if play_one_more == "y"
+      return main
+    else
+      exit
+    end
 end
 
 puts

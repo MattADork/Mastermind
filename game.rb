@@ -41,14 +41,25 @@ def matches(code, guess)
   end
   if code[0] == guess[0]
     $exact_matches += 1
+    $incorrect_match -= 1
   end
   if code[1] == guess[1]
     $exact_matches += 1
+    $incorrect_match -= 1
   end
   if code[2] == guess[2]
     $exact_matches += 1
+    $incorrect_match -= 1
   end
   if code[3] == guess[3]
     $exact_matches += 1
+    $incorrect_match -= 1
+  end
+  sorted_code = code.sort
+  sorted_guess = guess.sort
+  intersect = (sorted_code & sorted_guess).flat_map { |n| [n]*[sorted_code.count(n), sorted_guess.count(n)].min }
+  $incorrect_match += intersect.length
+  if $incorrect_match < 0
+    $incorrect_match == 0
   end
 end
