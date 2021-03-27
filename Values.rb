@@ -25,25 +25,9 @@ def assign(array)
   end
 end
 
-def check_guess(array)
-  final_array = []
-  array.each do |value|
-    if value == "A" or value == "B" or value == "C" or value == "D" or value == "E" or value == "F"
-      final_array.push(value)
-    end
-  end
-  unless final_array.length == 4
-    return play_game
-  end
-  return final_array
-end
-
 def space(array)
-  if array == ""
-    array = ["A", "B", "C", "D"]
-  end
   spaced_array = array.map do |value|
-    value = " " + value + " "
+    value = "  " + value + "  "
   end
   return spaced_array
 end

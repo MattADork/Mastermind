@@ -3,19 +3,16 @@ require_relative 'game'
 require_relative 'Values'
 
 def main
-  values = initialize_values
-  code = assign(values)
-  code_spaced = space(code)
-  my_guess = play_game
-  print "hi"
-end
-
-def play_game
-  puts
   my_guess = guess
-  spaced_guess = space(my_guess)
-  puts spaced_guess[0] + spaced_guess[1] + spaced_guess[2] + spaced_guess[3]
-  return spaced_guess
+  split_guess = space(my_guess)
+  print $code_spaced
+  puts
+  print split_guess
+  puts
+  puts split_guess[0].colorize(:color => :white, :background => :red) + split_guess[1].colorize(:color => :white, :background => :blue) + split_guess[2].colorize(:color => :white, :background => :magenta) + split_guess[3].colorize(:color => :white, :background => :cyan)
 end
 
+values = initialize_values
+code = assign(values)
+$code_spaced = space(code)
 main
