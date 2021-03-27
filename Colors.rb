@@ -14,4 +14,6 @@ def colorize_array(value)
   end
 end
 
-# def make_red(string)
+def print_guess
+  puts colorize_array($split_guess[0]) + " " + colorize_array($split_guess[1]) + " " + colorize_array($split_guess[2]) + " " + colorize_array($split_guess[3]) + "    " + ("X " * $exact_matches.to_i) + ("O " * $incorrect_match.to_i)
+end
