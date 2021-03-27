@@ -13,6 +13,10 @@ def game
 end
 
 def main
+  puts
+  puts "Each X represents an exact match"
+  puts "Each O represents a correct value in the wrong place"
+  puts
   puts "Manually create code? (y/n)"
   prompt
   manual = gets.chomp.downcase
@@ -58,7 +62,12 @@ def main
   print_guess
   matches($code_spaced, game)
   print_guess
-  puts "Sorry... You've lost this time, do you want to play again? (y/n)"
+  puts
+  puts "Sorry... You've lost this time the correct code was:"
+  puts
+  puts colorize_array($code_spaced[0]) + " " + colorize_array($code_spaced[1]) + " " + colorize_array($code_spaced[2]) + " " + colorize_array($code_spaced[3])
+  puts
+  puts "Do you want to play again? (y/n)"
     prompt
     play_one_more = gets.chomp.downcase
     if play_one_more == "y"
@@ -74,9 +83,6 @@ puts "You'll have 12 turns to crack the code, each turn"
 puts "guess four letters from A to F, and you'll be notified"
 puts "of how many EXACT matches you have, and how many"
 puts "correct values you have in the wrong place."
-puts
-puts "Each X represents an exact match"
-puts "Each O represents a correct value in the wrong place"
 puts
 
 main
