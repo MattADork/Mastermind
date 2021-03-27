@@ -31,12 +31,23 @@ def main
     end
     code = assign(values)
     $code_spaced = space(code)
+    puts
+    puts "Do you want the console to attempt to solve this? (y/n)"
+    console_attempt = gets.chomp.downcase
+    if console_attempt == 'y'
+      play_computer_game
+    else
+      play_game
+    end
   else
     values = initialize_values
     code = assign(values)
     $code_spaced = space(code)
+    play_game
   end
+end
 
+def play_game
   $turn_number = 1
   matches($code_spaced, game)
   print_guess
@@ -77,6 +88,15 @@ def main
     end
 end
 
+def play_computer_game
+  $turn_number = 0
+  while $game_over == false
+    computer_matches($code_spaced, computer_solve)
+    print_guess
+    gets.chomp
+  end
+end
+
 puts
 puts "Welcome to my console version of Mastermind!"
 puts "You'll have 12 turns to crack the code, each turn"
@@ -84,5 +104,6 @@ puts "guess four letters from A to F, and you'll be notified"
 puts "of how many EXACT matches you have, and how many"
 puts "correct values you have in the wrong place."
 puts
+$game_over = false
 
 main

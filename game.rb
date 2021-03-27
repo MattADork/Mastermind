@@ -33,7 +33,7 @@ def matches(code, guess)
     puts "Play again? (y/n)"
     prompt
     play_again = gets.chomp.downcase
-    if play_again == 'y'
+    if play_again == 'y' or play_again == ''
       return main
     else
       exit
@@ -62,4 +62,73 @@ def matches(code, guess)
   if $incorrect_match < 0
     $incorrect_match == 0
   end
+end
+
+def computer_solve
+  computer_values = initialize_values
+  computer_assign = assign(computer_values)
+  $split_guess = space(computer_assign)
+  $turn_number += 1
+  return $split_guess
+end
+
+def computer_matches(code, guess)
+  if defined? $solved_value_1 == "global-variable"
+    guess[0] = $solved_value_1
+  end
+  if defined? $solved_value_2 == "global-variable"
+    guess[1] = $solved_value_2
+  end
+  if defined? $solved_value_3 == "global-variable"
+    guess[2] = $solved_value_3
+  end
+  if defined? $solved_value_4 == "global-variable"
+    guess[3] = $solved_value_4
+  end
+
+  puts "Turn number: #{$turn_number}"
+  $exact_matches = 0
+  $incorrect_match = 0
+
+  
+  if code[0] == guess[0] and code[1] == guess[1] and code[2] == guess[2] and code[3] == guess[3]
+    print_guess
+    puts "The computer has won the game in #{$turn_number} turns!"
+    puts "Play again? (y/n)"
+    prompt
+    play_again = gets.chomp.downcase
+    if play_again == 'y' or play_again == ''
+      return main
+    else
+      exit
+    end
+  end
+  if code[0] == guess[0]
+    $exact_matches += 1
+    $incorrect_match -= 1
+    $solved_value_1 = code[0]
+  end
+  if code[1] == guess[1]
+    $exact_matches += 1
+    $incorrect_match -= 1
+    $solved_value_2 = code[1]
+  end
+  if code[2] == guess[2]
+    $exact_matches += 1
+    $incorrect_match -= 1
+    $solved_value_3 = code[2]
+  end
+  if code[3] == guess[3]
+    $exact_matches += 1
+    $incorrect_match -= 1
+    $solved_value_4 = code[3]
+  end
+  sorted_code = code.sort
+  sorted_guess = guess.sort
+  intersect = (sorted_code & sorted_guess).flat_map { |n| [n]*[sorted_code.count(n), sorted_guess.count(n)].min }
+  $incorrect_match += intersect.length
+  if $incorrect_match < 0
+    $incorrect_match == 0
+  end
+  puts
 end
