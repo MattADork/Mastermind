@@ -21,6 +21,22 @@ def assign(array)
       value = "E"
     elsif value == 6
       value = "F"
+    elsif value == "A"
+      value = "A"
+    elsif value == "B"
+      value = "B"
+    elsif value == "C"
+      value = "C"
+    elsif value == "D"
+      value = "D"
+    elsif value == "E"
+      value = "E"
+    elsif value == "F"
+      value = "F"
+    else
+      puts
+      puts "Sorry, that code won't work, let's start from the beginning."
+      puts main
     end
   end
 end
