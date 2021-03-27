@@ -1,4 +1,5 @@
 require 'colorize'
+require 'io/console'
 require_relative 'game'
 require_relative 'Values'
 require_relative 'Colors'
@@ -18,7 +19,7 @@ def main
   if manual == "y"
     puts "Choose a four-letter code (only using the letters A through F):"
     prompt
-    values = gets.chomp.upcase.split("")
+    values = STDIN.noecho(&:gets).chomp.upcase.split("")
     unless values.length == 4
       puts
       puts "Sorry, the code has to be exactly 4 letters."
